@@ -5,7 +5,6 @@
     <title>Padfriender : Login</title>
 </head>
 <body>
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>.
 <div content>
     <form name="f" action="login" method="post">
         <fieldset>
