@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.anusien.padfriender</groupId>
-    <artifactId>padfriender</artifactId>
+    <artifactId>Padfriender</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Padfriender</name>
+    <name>Padfriender Webapp</name>
     <url>http://www.anusien.com</url>
 
     <properties>
@@ -19,21 +19,9 @@
         <commons-io.version>1.3.2</commons-io.version>
         <junit.version>4.12</junit.version>
         <javax.version>2.5</javax.version>
-    </properties>
 
-    <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.3</version>
-            <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-            </configuration>
-        </plugin>
-    </plugins>
-    </build>
+        <jdk.version>1.8</jdk.version>
+    </properties>
 
     <dependencies>
         <!-- Spring -->
@@ -111,6 +99,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -124,4 +113,28 @@
             <version>2.5</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- For Maven Tomcat Plugin -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/padfriender</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
