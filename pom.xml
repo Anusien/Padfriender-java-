@@ -22,7 +22,7 @@
         <jstl.version>1.2</jstl.version>
         <mysql-connector.version>5.1.37</mysql-connector.version>
 
-        <jdk.version>1.8</jdk.version>
+        <jdk.version>1.7</jdk.version>
     </properties>
 
     <dependencies>
@@ -97,7 +97,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
@@ -123,10 +123,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
+            <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
