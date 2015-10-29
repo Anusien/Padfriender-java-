@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MonsterJsonRetriever {
     private static final Logger logger = Logger.getLogger(MonsterJsonRetriever.class);
@@ -17,14 +21,56 @@ public class MonsterJsonRetriever {
     @VisibleForTesting
     protected static final String JsonURL = "https://www.padherder.com/api/monsters/";
 
-    @Nullable
-    public String getJson() {
-        final String jsonFromUrl = getJsonFromUrl(JsonURL);
-        if(jsonFromUrl != null) {
-            return jsonFromUrl;
+    private Lock lock = new ReentrantLock();
+    private CachedJson cache;
+
+    private class CachedJson {
+        @Nonnull private final String json;
+        @Nonnull private final Date accessed;
+
+        public CachedJson(@Nonnull final String json, @Nonnull final Date accessed) {
+            this.json = json;
+            this.accessed = accessed;
         }
 
-        return getJsonFromCachedFile();
+        @Nonnull
+        public String getJson() {
+            return this.json;
+        }
+
+        @Nonnull
+        public Date getAccessed() {
+            return this.accessed;
+        }
+    }
+
+    @Nullable
+    public String getJson() {
+        try {
+            lock.lock();
+            if (cache != null) {
+                return cache.getJson();
+            }
+
+            final CachedJson json;
+            // No cache, so do a load and read it into the cache
+            final String jsonFromUrl = getJsonFromUrl(JsonURL);
+            if (jsonFromUrl != null) {
+                json = new CachedJson(jsonFromUrl, new Date());
+            } else {
+                final String jsonFromFile = getJsonFromCachedFile();
+                if(jsonFromFile == null) {
+                    // No URL or file, we're hosed
+                    return null;
+                }
+                json = new CachedJson(jsonFromFile, new GregorianCalendar(1970, 1, 1).getTime()); // always want the latest on the internet to win
+            }
+
+            this.cache = json;
+            return this.cache.getJson();
+        } finally {
+            lock.unlock();
+        }
     }
 
 

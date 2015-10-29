@@ -1,25 +1,20 @@
 package com.anusien.padfriender.model.monster;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Iterables;
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MonsterJsonParser {
     private static final Logger logger = Logger.getLogger(MonsterJsonParser.class);
@@ -35,6 +30,9 @@ public class MonsterJsonParser {
 
         @JsonProperty("pdx_id")
         public Integer pdxId;
+
+        @JsonProperty("rarity")
+        public int rarity;
 
         @JsonProperty("name")
         public String name;
@@ -57,6 +55,9 @@ public class MonsterJsonParser {
         @JsonProperty("type3")
         public Integer tertiaryTypeId;
 
+        @JsonProperty("max_level")
+        public int maxLevel;
+
         @JsonProperty("awoken_skills")
         public int[] awakenings;
 
@@ -78,16 +79,18 @@ public class MonsterJsonParser {
 
             if(id == -1 || name == null || jpName == null || imagePath == null || primaryElement == null
                     || primaryType == null) {
+                logger.error("Failed to properly parse monster id=\"" + id + "\", name=\"" + name + "\".");
                 return null;
             }
 
-            return new Monster(id, usId != null ? usId : id, pdxId != null ? pdxId : id, name, jpName, imagePath,
-                    primaryElement, secondaryElement,
+            return new Monster(id, usId != null ? usId : id, pdxId != null ? pdxId : id, rarity, name, jpName,
+                    imagePath, primaryElement, secondaryElement,
                     primaryType, secondaryType,
-                    tertiaryType, numAwakenings, jpOnly);
+                    tertiaryType, numAwakenings, maxLevel, jpOnly);
         }
     }
 
+    @Autowired
     public MonsterJsonParser(@Nonnull final MonsterJsonRetriever retriever) {
         this.retriever = Preconditions.checkNotNull(retriever);
     }

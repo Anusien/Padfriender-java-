@@ -20,22 +20,24 @@ public class Monster implements Comparable<Monster> {
         }
         final Monster other = (Monster) o;
 
-        return new EqualsBuilder().append(this.id, other.id)
+        return new EqualsBuilder().append(this.id, other.id).append(this.usId, other.usId)
+                .append(this.pdxId, other.pdxId).append(this.rarity, other.rarity)
                 .append(this.name, other.name).append(this.jpName, other.jpName)
                 .append(this.imagePath, other.imagePath).append(this.primaryElement,other.primaryElement)
                 .append(this.secondaryElement, other.secondaryElement).append(this.primaryType, other.primaryType)
                 .append(this.secondaryType, other.secondaryType).append(this.tertiaryType, other.tertiaryType)
-                .append(this.numAwakenings, other.numAwakenings).append(this.jpOnly, other.jpOnly).isEquals();
+                .append(this.numAwakenings, other.numAwakenings).append(this.maxLevel, other.maxLevel)
+                .append(this.jpOnly, other.jpOnly).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(109, 53).append(this.id)
-                .append(this.name).append(this.jpName)
-                .append(this.imagePath).append(this.primaryElement)
-                .append(this.secondaryElement).append(this.primaryType)
-                .append(this.secondaryType).append(this.tertiaryType)
-                .append(this.numAwakenings).append(this.jpOnly).toHashCode();
+        return new HashCodeBuilder(109, 53).append(id).append(usId).append(pdxId).append(rarity)
+                .append(name).append(jpName)
+                .append(imagePath).append(primaryElement)
+                .append(secondaryElement).append(primaryType)
+                .append(secondaryType).append(tertiaryType)
+                .append(numAwakenings).append(maxLevel).append(jpOnly).toHashCode();
     }
 
     public enum Element {
@@ -84,9 +86,11 @@ public class Monster implements Comparable<Monster> {
         God(5),
         Attacker(6),
         Devil(7),
+        Machine(8),
         AwokenSkill(12),
         Protected(13),
         EnhanceMaterial(14),
+        Vendor(15),
         NONE(-1);
 
         private final int id;
@@ -121,6 +125,7 @@ public class Monster implements Comparable<Monster> {
     private final int id;
     private final int usId;
     private final int pdxId;
+    private final int rarity;
     @Nonnull private final String name;
     @Nonnull private final String jpName;
     private final String imagePath;
@@ -129,20 +134,22 @@ public class Monster implements Comparable<Monster> {
     @Nonnull private final Type primaryType;
     @Nullable private final Type secondaryType;
     @Nullable private final Type tertiaryType;
+    private final int maxLevel;
     private final int numAwakenings;
     private final boolean jpOnly;
 
-    public Monster(final int id, final int usId, final int pdxId, @Nonnull final String name,
+    public Monster(final int id, final int usId, final int pdxId, final int rarity, @Nonnull final String name,
                    @Nonnull final String jpName, @Nonnull final String imagePath,
                    @Nonnull final Element primaryElement, @Nullable final Element secondaryElement,
                    @Nonnull final Type primaryType, @Nullable final Type secondaryType, @Nullable final Type tertiaryType,
-                   final int numAwakenings, final boolean jpOnly) {
+                   final int numAwakenings, final int maxLevel, final boolean jpOnly) {
 
         Preconditions.checkArgument(id > 0);
         this.id = id;
 
         this.usId = usId;
         this.pdxId = pdxId;
+        this.rarity = rarity;
         this.name = Preconditions.checkNotNull(name);
         this.jpName = Preconditions.checkNotNull(jpName);
         this.imagePath = Preconditions.checkNotNull(imagePath);
@@ -151,7 +158,12 @@ public class Monster implements Comparable<Monster> {
         this.primaryType = Preconditions.checkNotNull(primaryType);
         this.secondaryType = secondaryType;
         this.tertiaryType = tertiaryType;
+        this.maxLevel = maxLevel;
         this.numAwakenings = numAwakenings;
         this.jpOnly = jpOnly;
+    }
+
+    public int getId() {
+        return id;
     }
 }
