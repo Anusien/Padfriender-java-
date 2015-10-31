@@ -8,15 +8,15 @@ import java.util.Set;
 public class User {
     @Nonnull private final UserId id;
     @Nonnull private final String email;
-    @Nonnull private final String passwordHash;
+    @Nonnull private final String name;
     @Nonnull private final Set<UserMonster> monsters;
     @Nonnull private final Set<User> friends;
 
-    public User(@Nonnull final UserId id, @Nonnull final String email, @Nonnull final String passwordHash,
+    public User(@Nonnull final UserId id, @Nonnull final String email, @Nonnull final String name,
                 @Nonnull final Set<UserMonster> monsters, @Nonnull final Set<User> friends) {
         this.id = id;
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.name = name;
         this.monsters = monsters;
         this.friends = friends;
     }

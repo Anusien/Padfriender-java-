@@ -11,8 +11,14 @@
     <fieldset>
         <legend>Sign up</legend>
 
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" maxlength="50">
         <label for="email">E-mail Address</label>
+
+        <input type="text" id="id" name="id" maxlength="9">
+        <label for="id">Puzzle and Dragons ID (no commas or spaces)</label>
+
+        <input type="name" id="name" name="name" maxlength="50">
+        <label for="name">In-game name</label>
 
         <input type="password" id="password" name="password">
         <label for="password">Password</label>
