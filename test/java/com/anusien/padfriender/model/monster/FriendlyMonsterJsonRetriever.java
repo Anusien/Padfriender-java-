@@ -1,5 +1,7 @@
 package com.anusien.padfriender.model.monster;
 
+import com.anusien.padfriender.persistence.monster.MonsterJsonRetriever;
+
 import javax.annotation.Nullable;
 
 public class FriendlyMonsterJsonRetriever extends MonsterJsonRetriever {

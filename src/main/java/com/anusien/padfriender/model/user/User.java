@@ -1,5 +1,7 @@
 package com.anusien.padfriender.model.user;
 
+import com.anusien.padfriender.model.monster.UserMonster;
+
 import javax.annotation.Nonnull;
 import java.util.Set;
 

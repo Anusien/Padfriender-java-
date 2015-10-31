@@ -1,15 +1,20 @@
 package com.anusien.padfriender.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.anusien.padfriender.model.monster.Monster;
+import com.anusien.padfriender.persistence.monster.MonsterJsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Nonnull;
+import java.util.Map;
+
+@Component
 public class AppConfig {
 
-    @Value("${database.server}")
-    String databaseServer;
-
-    @Value("${database.username}")
-    String databaseUsername;
-
-    @Value("${database.password}")
-    String databasePassword;
+    @Bean
+    @Autowired
+    public Map<Integer, Monster> getMonsters(@Nonnull final MonsterJsonParser parser) {
+        return parser.getMonsters();
+    }
 }

@@ -1,5 +1,6 @@
-package com.anusien.padfriender.model.monster;
+package com.anusien.padfriender.persistence.monster;
 
+import com.anusien.padfriender.model.monster.Monster;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -16,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class MonsterJsonParser {
     private static final Logger logger = Logger.getLogger(MonsterJsonParser.class);
 
@@ -117,6 +120,4 @@ public class MonsterJsonParser {
             return Collections.emptyMap();
         }
     }
-
-
 }

@@ -1,8 +1,10 @@
-package com.anusien.padfriender.model.monster;
+package com.anusien.padfriender.persistence.monster;
 
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -15,6 +17,7 @@ import java.util.GregorianCalendar;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+@Component
 public class MonsterJsonRetriever {
     private static final Logger logger = Logger.getLogger(MonsterJsonRetriever.class);
 

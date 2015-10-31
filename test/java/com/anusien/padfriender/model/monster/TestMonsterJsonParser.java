@@ -1,5 +1,7 @@
 package com.anusien.padfriender.model.monster;
 
+import com.anusien.padfriender.persistence.monster.MonsterJsonParser;
+import com.anusien.padfriender.persistence.monster.MonsterJsonRetriever;
 import org.junit.Assert;
 import org.junit.Test;
 
