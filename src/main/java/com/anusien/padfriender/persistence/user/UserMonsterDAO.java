@@ -4,11 +4,13 @@ import com.anusien.padfriender.model.monster.Monster;
 import com.anusien.padfriender.model.monster.UserMonster;
 import com.anusien.padfriender.model.user.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +31,7 @@ public class UserMonsterDAO {
     @Nonnull private final UserMonsterRowMapper mapper;
 
     @Autowired
-    public UserMonsterDAO(@Nonnull final DataSource connection, final Map<Integer, Monster> monsters) {
+    public UserMonsterDAO(@Nonnull final DataSource connection, @Qualifier("monsterList")final Map<Integer, Monster> monsters) {
         this.connection = connection;
 
         mapper = new UserMonsterRowMapper(monsters);

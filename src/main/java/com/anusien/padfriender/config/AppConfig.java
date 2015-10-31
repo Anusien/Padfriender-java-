@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class AppConfig {
 
-    @Bean
+    @Bean(name = "monsterList")
     @Autowired
     public Map<Integer, Monster> getMonsters(@Nonnull final MonsterJsonParser parser) {
         return parser.getMonsters();
