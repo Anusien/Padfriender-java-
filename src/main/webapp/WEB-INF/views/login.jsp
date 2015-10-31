@@ -27,17 +27,7 @@
             </div>
         </fieldset>
     </form>
-    <form name="signup" action="signup" method="post">
-        <fieldset>
-            <legend>Sign up</legend>
-
-            <input type="email" id="email" name="email">
-            <label for="email">E-mail Address</label>
-
-            <input type=""
-            <label for="password">Password</label>
-        </fieldset>
-    </form>
+    <a href="signup">Sign up instead</a>
 </div>
 </body>
 </html>
