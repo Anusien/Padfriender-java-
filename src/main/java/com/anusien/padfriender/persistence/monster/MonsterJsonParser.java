@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class MonsterJsonParser {
+class MonsterJsonParser {
     private static final Logger logger = Logger.getLogger(MonsterJsonParser.class);
 
     @Nonnull private final MonsterJsonRetriever retriever;
@@ -99,7 +99,7 @@ public class MonsterJsonParser {
     }
 
     @Nonnull
-    public Map<Integer, Monster> getMonsters() {
+    protected Map<Integer, Monster> getMonsters() {
         final String json = retriever.getJson();
 
         final ObjectMapper mapper = new ObjectMapper();

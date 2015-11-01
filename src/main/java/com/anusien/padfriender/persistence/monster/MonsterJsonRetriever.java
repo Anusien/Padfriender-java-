@@ -18,7 +18,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Component
-public class MonsterJsonRetriever {
+class MonsterJsonRetriever {
     private static final Logger logger = Logger.getLogger(MonsterJsonRetriever.class);
 
     @VisibleForTesting
@@ -48,7 +48,7 @@ public class MonsterJsonRetriever {
     }
 
     @Nullable
-    public String getJson() {
+    protected String getJson() {
         try {
             lock.lock();
             if (cache != null) {

@@ -1,6 +1,4 @@
-package com.anusien.padfriender.model.monster;
-
-import com.anusien.padfriender.persistence.monster.MonsterJsonRetriever;
+package com.anusien.padfriender.persistence.monster;
 
 import javax.annotation.Nullable;
 

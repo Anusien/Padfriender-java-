@@ -3,6 +3,7 @@ package com.anusien.padfriender.persistence.user;
 import com.anusien.padfriender.model.monster.Monster;
 import com.anusien.padfriender.model.monster.UserMonster;
 import com.anusien.padfriender.model.user.UserId;
+import com.anusien.padfriender.persistence.monster.MonsterListProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,7 +11,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,18 +28,18 @@ public class UserMonsterDAO {
             "WHERE users.email=?";
 
     @Nonnull private final DataSource connection;
-    @Nonnull private final UserMonsterRowMapper mapper;
+    @Nonnull private final MonsterListProvider monsterProvider;
 
     @Autowired
-    public UserMonsterDAO(@Nonnull final DataSource connection, @Qualifier("monsterList")final Map<Integer, Monster> monsters) {
+    public UserMonsterDAO(@Nonnull final DataSource connection, @Nonnull final MonsterListProvider monsterProvider) {
         this.connection = connection;
-
-        mapper = new UserMonsterRowMapper(monsters);
+        this.monsterProvider = monsterProvider;
     }
 
     public Collection<UserMonster> getFriendMonsters(@Nonnull final String email) {
         final JdbcTemplate template = new JdbcTemplate(connection);
-        final Collection<UserMonster> monsters = template.query(GET_FRIENDS_SQL, new Object[]{email}, mapper);
+        final Collection<UserMonster> monsters = template.query(GET_FRIENDS_SQL, new Object[]{email},
+                new UserMonsterRowMapper(monsterProvider.getMonsters()));
         return monsters;
     }
 
