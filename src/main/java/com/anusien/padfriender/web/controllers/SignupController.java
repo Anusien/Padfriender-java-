@@ -73,6 +73,7 @@ public class SignupController {
             LOGGER.error("Tried to create user", e);
         }
 
+        request.login(email, password);
         return new ModelAndView("view");
     }
 }
