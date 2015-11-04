@@ -8,6 +8,7 @@
 <body>
 <div content>
     <form name="signup" action="signup" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <fieldset>
         <legend>Sign up</legend>
 

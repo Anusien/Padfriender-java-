@@ -8,6 +8,7 @@
 <body>
 <div content>
     <form name="login" action="login" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <fieldset>
             <legend>Please Login</legend>
             <c:if test="${param.error}">
