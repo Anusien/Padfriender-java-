@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Padfriender : Login</title>
+    <title>Padfriender : Signup</title>
 </head>
 <body>
 <div content>
@@ -11,23 +11,23 @@
     <fieldset>
         <legend>Sign up</legend>
 
-        <input type="email" id="email" name="email" maxlength="50">
-        <label for="email">E-mail Address</label>
+        <label for="email">E-mail Address*</label>
+        <input type="email" id="email" name="email" maxlength="50"><br/>
 
-        <input type="text" id="id" name="id" maxlength="9">
-        <label for="id">Puzzle and Dragons ID (no commas or spaces)</label>
+        <label for="id">Puzzle and Dragons ID (no commas or spaces)*</label>
+        <input type="text" id="id" name="id" maxlength="9"><br/>
 
-        <input type="name" id="name" name="name" maxlength="50">
-        <label for="name">In-game name</label>
+        <label for="name">In-game name*</label>
+        <input type="name" id="name" name="name" maxlength="50"><br/>
 
-        <input type="password" id="password" name="password">
-        <label for="password">Password</label>
+        <label for="password">Password*</label>
+        <input type="password" id="password" name="password"><br/>
 
-        <input type="password" id="password_confirm" name="password_confirm">
-        <label for="password_confirm">Password</label>
+        <label for="password_confirm">Confirm Password*</label>
+        <input type="password" id="password_confirm" name="password_confirm"><br/>
 
         <div class="form-actions">
-            <button type="submit" class="btn">Log in</button>
+            <button type="submit" class="btn">Sign up</button>
         </div>
     </fieldset>
   </form>

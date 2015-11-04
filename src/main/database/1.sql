@@ -3,8 +3,8 @@ CREATE TABLE users (
   email VARCHAR(50) NOT NULL UNIQUE,
   name VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(45) NOT NULL,
-  enabled TINYINT NOT NULL DEFAULT 1,
   friendcode VARCHAR(9) NOT NULL,
+  enabled TINYINT NOT NULL DEFAULT 1,
 
   PRIMARY KEY (id),
   INDEX(email)

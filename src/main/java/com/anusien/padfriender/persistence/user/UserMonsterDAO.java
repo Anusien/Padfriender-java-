@@ -5,7 +5,6 @@ import com.anusien.padfriender.model.monster.UserMonster;
 import com.anusien.padfriender.model.user.UserId;
 import com.anusien.padfriender.persistence.monster.MonsterListProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
