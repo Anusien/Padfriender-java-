@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Nonnull;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
@@ -71,9 +72,15 @@ public class SignupController {
             userDao.createUser(email, name, userId, password);
         } catch (IOException e) {
             LOGGER.error("Tried to create user", e);
+            return new ModelAndView("signup");
         }
 
-        request.login(email, password);
+        try {
+            request.login(email, password);
+        } catch (ServletException e) {
+            LOGGER.error("Tried to log in after creating new user", e);
+            return new ModelAndView("signup");
+        }
         return new ModelAndView("view");
     }
 }
