@@ -1,7 +1,7 @@
 package com.anusien.padfriender.web.controllers;
 
 import com.anusien.padfriender.model.monster.UserMonster;
-import com.anusien.padfriender.persistence.user.UserMonsterDAO;
+import com.anusien.padfriender.persistence.user.UserMonsterDao;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Nonnull;
 import java.security.Principal;
-import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,10 +19,10 @@ import java.util.Set;
 public class ViewController {
     private static final Logger LOGGER = Logger.getLogger(LoginController.class);
 
-    @Nonnull private final UserMonsterDAO userMonsterLookup;
+    @Nonnull private final UserMonsterDao userMonsterLookup;
 
     @Autowired
-    public ViewController(@Nonnull UserMonsterDAO userMonsterLookup) {
+    public ViewController(@Nonnull UserMonsterDao userMonsterLookup) {
         this.userMonsterLookup = userMonsterLookup;
     }
 

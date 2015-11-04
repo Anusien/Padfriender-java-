@@ -8,6 +8,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:component-scan base-package="com.anusien.padfriender.*" />
+    <context:property-placeholder location="classpath*:config/dev.properties"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
@@ -18,7 +19,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://${db.connection}" />
+        <property name="url" value="jdbc:mysql://${db.connection}/${db.name}" />
         <property name="username" value="${db.username}" />
         <property name="password" value="${db.password}" />
     </bean>

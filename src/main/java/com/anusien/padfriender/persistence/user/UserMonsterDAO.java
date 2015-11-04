@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Component
-public class UserMonsterDAO {
+public class UserMonsterDao {
     private static final String GET_FRIENDS_SQL =
             "SELECT user_monsters.*, friend.friendcode FROM users " +
             "INNER JOIN user_friends1 ON user_friends.user1 = users.id " +
@@ -30,7 +30,7 @@ public class UserMonsterDAO {
     @Nonnull private final MonsterListProvider monsterProvider;
 
     @Autowired
-    public UserMonsterDAO(@Nonnull final DataSource connection, @Nonnull final MonsterListProvider monsterProvider) {
+    public UserMonsterDao(@Nonnull final DataSource connection, @Nonnull final MonsterListProvider monsterProvider) {
         this.connection = connection;
         this.monsterProvider = monsterProvider;
     }
