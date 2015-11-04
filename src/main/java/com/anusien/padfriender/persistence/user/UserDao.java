@@ -21,7 +21,7 @@ public class UserDao {
         this.dataSource = dataSource;
     }
 
-    private final static String createUserSql = "INSERT INTO USERS (email, name, password, friendcode, enabled) " +
+    private final static String createUserSql = "INSERT INTO users (email, name, password, friendcode, enabled) " +
                                              "VALUES(?, ?, ?, ?, ?);";
 
     // TODO check to see if that user already exists
