@@ -21,7 +21,7 @@
                 login-page="/login"
                 default-target-url="/welcome"
                 authentication-failure-url="/login?error"
-                username-parameter="username"
+                username-parameter="email"
                 password-parameter="password" />
         <logout logout-success-url="/login?logout"  />
         <!-- enable csrf protection -->
@@ -32,11 +32,15 @@
     <authentication-manager>
         <authentication-provider>
             <password-encoder hash="sha">
-                <salt-source user-property="username"/>
+                <salt-source user-property="email"/>
             </password-encoder>
+            <username-parameter>email</username-parameter>
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query=
-                                       "select email, password, enabled from users where email=?"/>
+                                       "select email, password, enabled from users where email=?"
+                               authorities-by-username-query=
+                                       "select users.email, user_authorities.authority from user_authorities inner join users ON user_authorities.user_id = users.id where users.email=?"
+            />
         </authentication-provider>
     </authentication-manager>
 

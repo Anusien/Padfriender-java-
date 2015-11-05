@@ -19,8 +19,10 @@ public class UserDao {
         this.dataSource = dataSource;
     }
 
-    private final static String createUserSql = "INSERT INTO users (email, name, password, friendcode, enabled) " +
-                                             "VALUES(?, ?, ?, ?, ?);";
+    private final static String createUserSql = "INSERT INTO users(email, name, password, friendcode, enabled) " +
+                                                "VALUES(?, ?, ?, ?, ?);";
+    private final static String createUserRoleSql = "INSERT INTO user_authorities(user_id, authority) " +
+                                                    "SELECT users.id, 'ROLE_USER' FROM users WHERE users.email = ?";
 
     // TODO check to see if that user already exists
     public void createUser(@Nonnull final String email, @Nonnull final String name, @Nonnull final UserId friendCode,
@@ -29,5 +31,6 @@ public class UserDao {
 
         final JdbcTemplate template = new JdbcTemplate(dataSource);
         template.update(createUserSql, email, name, hash, friendCode.toString(), 1);
+        template.update(createUserRoleSql, email);
     }
 }
