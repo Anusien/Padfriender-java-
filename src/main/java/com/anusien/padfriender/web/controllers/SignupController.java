@@ -81,6 +81,6 @@ public class SignupController {
             LOGGER.error("Tried to log in after creating new user", e);
             return new ModelAndView("signup");
         }
-        return new ModelAndView("view");
+        return new ModelAndView("index");
     }
 }
