@@ -66,7 +66,7 @@ public class SignupController {
             return new ModelAndView("signup", model);
         }
 
-        final UserId userId = new UserId(id);
+        final UserId userId = UserId.getUserIdFromString(id);
 
         try {
             userDao.createUser(email, name, userId, password);
